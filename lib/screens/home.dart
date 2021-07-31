@@ -225,7 +225,9 @@ class _HomeState extends State<Home> {
                 onTap: () async {
                   // saveData();
                   final pref = await SharedPreferences.getInstance();
-                  pref.setBool('login', false);
+                  await pref.clear();
+                  await pref.setBool('login', false);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
