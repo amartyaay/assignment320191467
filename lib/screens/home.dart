@@ -25,15 +25,17 @@ String assignment = '';
 Future<void> getData() async {
   final pref = await SharedPreferences.getInstance();
   display = pref.getInt('displayStyle').toString();
+  if (display == 'null') {
+    display = '0';
+    pref.setInt('displayStyle', 0);
+  }
   idNo = (pref.getString('id')).toString();
   studentName = pref.getString('name').toString();
   score = pref.getString('score').toString();
   assignment = pref.getString('assignment').toString();
   if (assignment == 'null') assignment = '0';
   if (score == 'null') score = '25';
-  // print(assignment);
-  // print(idNo + '\tid no');
-  // return pref.getString('name');
+  print(display + '\t sisplay');
 }
 
 int assgn = int.parse(assignment);
@@ -127,11 +129,12 @@ class _HomeState extends State<Home> {
                               shape: BoxShape.circle,
                               color: kColor,
                             ),
+                            padding: EdgeInsets.all(20),
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
-                                '$percentage',
-                                style: TextStyle(fontSize: 40),
+                                '$percentage%',
+                                style: TextStyle(fontSize: 30),
                               ),
                             ),
                           ),

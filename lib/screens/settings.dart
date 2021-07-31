@@ -4,6 +4,7 @@ import '../utilities/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 int display = 0;
+// void get
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -21,7 +22,10 @@ class _SettingsState extends State<Settings> {
 
   void getDisplayStyle() async {
     final pref = await SharedPreferences.getInstance();
-    display = pref.getInt('displayStyle')!.toInt();
+    int temp = pref.getInt('displayStyle')!.toInt();
+    setState(() {
+      display = temp;
+    });
   }
 
   @override
